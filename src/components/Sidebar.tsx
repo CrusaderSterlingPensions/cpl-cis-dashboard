@@ -58,13 +58,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-main duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
+      className={`absolute left-0 top-0 z-9999 flex h-screen w-60 flex-col overflow-y-hidden bg-main duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <NavLink to="/" className="w-16 h-16">
+        <NavLink to="/" className="w-12 h-12">
           <img src={Logo} alt="Logo" />
         </NavLink>
 
@@ -94,7 +94,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
         {/* <!-- Sidebar Menu --> */}
-        <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
+        <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-4">
           {/* <!-- Menu Group --> */}
           <div>
             <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
@@ -113,7 +113,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-sm text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                           (pathname === '/' ||
                             pathname.includes('dashboard')) &&
                           'bg-meta-1 dark:bg-meta-4'
@@ -191,7 +191,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/mobile-app"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 text-xs duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -237,7 +237,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               <li>
                 <NavLink
                   to="/mandate"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-sm text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('mandate') && 'bg-meta-1 dark:bg-meta-4'
                   }`}
                 >
@@ -409,7 +409,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <React.Fragment>
                       <NavLink
                         to="#"
-                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                        className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-sm text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                           (pathname === '/micropensions' ||
                             pathname.includes('micropensions')) &&
                           'bg-meta-1 dark:bg-meta-4'
@@ -480,7 +480,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             <NavLink
                               to="/micropensions/pin-upload/auth"
                               className={({ isActive }) =>
-                                'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
+                                'group relative flex items-center gap-2.5 rounded-md px-4 text-xs font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')
                               }
                             >
@@ -549,7 +549,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               <li>
                 <NavLink
                   to="/settings"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 text-sm font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                     pathname.includes('settings') && 'bg-meta-1 dark:bg-meta-4'
                   }`}
                 >
