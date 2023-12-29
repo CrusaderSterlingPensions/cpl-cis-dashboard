@@ -1,4 +1,13 @@
 import { lazy } from 'react';
+const UploadTh = lazy(
+  () => import('../pages/TransferHistory/SubmitTh/UploadTh'),
+);
+const ReportTh = lazy(
+  () => import('../pages/TransferHistory/SubmitTh/ReportTh'),
+);
+const Credential = lazy(
+  () => import('../pages/TransferHistory/SubmitTh/Credential'),
+);
 const Upload = lazy(() => import('../pages/Micropensions/Upload'));
 const PinUpload = lazy(() => import('../pages/Micropensions/PinUpload'));
 const UserProfilePage = lazy(() => import('../pages/UserProfilePage'));
@@ -94,6 +103,19 @@ const coreRoutes = [
   //   path: '/submitth',
   //   component: SubmitTh,
   // },
+
+  {
+    path: '/th',
+    component: Credential,
+  },
+  {
+    path: '/th/upload',
+    component: UploadTh,
+  },
+  {
+    path: '/th/report',
+    component: ReportTh,
+  },
 ];
 
 const routes = [...coreRoutes];
