@@ -50,7 +50,7 @@ const PinUpload = () => {
           pauseOnHover: true,
           draggable: true,
         });
-        navigate('/micropensions/pin-upload/upload', {
+        navigate('/micropensions/pin-upload/save', {
           state: { token: authCall.token },
         });
       }

@@ -83,7 +83,7 @@ const MobileApp = () => {
         <div className="col-span-12 xl:col-span-8">
           <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
             <div className="max-w-full overflow-x-auto">
-              <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
+              <h4 className="mb-6 text-base font-semibold text-black dark:text-white">
                 Recent Activities
               </h4>
               <table className="w-full table-auto">
@@ -92,19 +92,19 @@ const MobileApp = () => {
                     {/* <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
                       Activity ID
                     </th> */}
-                    <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                    <th className="min-w-[220px] py-4 px-4 font-medium text-black text-sm dark:text-white xl:pl-11">
                       PIN
                     </th>
-                    <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[150px] py-4 px-4 font-medium text-black text-sm dark:text-white">
                       Name
                     </th>
-                    <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[150px] py-4 px-4 font-medium text-black text-sm dark:text-white">
                       Activity
                     </th>
-                    <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[120px] py-4 px-4 font-medium text-black text-sm dark:text-white">
                       Status
                     </th>
-                    <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                    <th className="min-w-[120px] py-4 px-4 font-medium text-black text-sm dark:text-white">
                       Date
                     </th>
                   </tr>
@@ -116,15 +116,15 @@ const MobileApp = () => {
                         <p className="text-black dark:text-white">{item.id}</p>
                       </td> */}
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                        <p className="text-black dark:text-white">{item.PIN}</p>
+                        <p className="text-black dark:text-white text-xs">{item.PIN}</p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                        <p className="text-black dark:text-white">
+                        <p className="text-black dark:text-white text-xs">
                           {item.firstname} {item.lastname}
                         </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                        <h5 className="font-medium text-black dark:text-white">
+                        <h5 className="font-medium text-black dark:text-white text-xs">
                           {item.activity}
                         </h5>
                         <p className="text-sm">{item.comments}</p>
@@ -142,7 +142,7 @@ const MobileApp = () => {
                         </p>
                       </td>
                       <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                        <p className="text-black dark:text-white">
+                        <p className="text-black dark:text-white text-xs">
                           {new Date(item.createdAt).toLocaleString()}
                         </p>
                       </td>

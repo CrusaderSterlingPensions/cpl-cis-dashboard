@@ -17,12 +17,12 @@ const CardFourMbl = () => {
     fetchData();
   }, []);
   return (
-    <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
+    <div className="rounded-sm border border-stroke bg-white py-5 px-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
         <svg
           className="fill-primary dark:fill-white"
-          width="22"
-          height="18"
+          width="14"
+          height="12"
           viewBox="0 0 22 18"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -42,12 +42,12 @@ const CardFourMbl = () => {
         </svg>
       </div>
 
-      <div className="mt-4 flex items-end justify-between">
+      <div className="mt-4 px-2 flex items-end justify-between">
         <div>
           <h4 className="text-title-md font-bold text-black dark:text-white">
             {resultData?.currentMonth?.count}
           </h4>
-          <span className="text-sm font-medium">Total Users</span>
+          <span className="text-xs font-medium">Total Users</span>
         </div>
 
         <span className="flex items-center gap-1 text-sm font-medium text-meta-3">

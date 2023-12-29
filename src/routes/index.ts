@@ -88,7 +88,7 @@ const coreRoutes = [
     component: PinUpload,
   },
   {
-    path: '/micropensions/pin-upload/upload',
+    path: '/micropensions/pin-upload/save',
     component: Upload,
   },
   // {
