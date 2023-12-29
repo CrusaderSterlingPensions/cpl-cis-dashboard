@@ -90,6 +90,7 @@ const Mandate = () => {
                     <h4 className="block text-sm font-medium text-gray-700 mb-6">
                       Upload Client Pins as Excel Document
                     </h4>
+                    {/* File Upload Start */}
                     <label
                       htmlFor="dropzone-file"
                       className="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
@@ -126,6 +127,7 @@ const Mandate = () => {
                         onChange={handleFileUpload}
                       />
                     </label>
+                    {/* File Upload End */}
                   </>
                 )}
 

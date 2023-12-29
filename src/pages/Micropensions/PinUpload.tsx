@@ -91,6 +91,7 @@ const PinUpload = () => {
                 Sign In
               </h3>
             </div>
+            {/* Signin page start */}
             <form onSubmit={handleSignIn}>
               <div className="p-6.5">
                 <div className="mb-4.5">
@@ -147,6 +148,7 @@ const PinUpload = () => {
                 </button>
               </div>
             </form>
+            {/* Signin page end */}
           </div>
 
           {/* <!-- Sign Up Form --> */}
