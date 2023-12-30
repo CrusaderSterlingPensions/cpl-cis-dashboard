@@ -4,6 +4,7 @@ import * as XLSX from 'xlsx';
 import Breadcrumb from '../../../components/Breadcrumb';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import ReportTh from './ReportTh';
 
 const UploadTh = () => {
   const location = useLocation();
@@ -51,6 +52,7 @@ const UploadTh = () => {
     setFileSelected(false);
     setPins([]);
     setFilename('');
+    setResponseResults([]);
   };
 
   const handleOnSubmit = async (e: any) => {
@@ -58,7 +60,7 @@ const UploadTh = () => {
 
     try {
       const response = await fetch(
-        'http://132.10.100.221:9912/crusader/webservices/api/submit-th',
+        'http://132.10.100.221:9912/crusader/webservices/api/th/submit/get-data',
         {
           method: 'POST',
           headers: {
@@ -79,35 +81,32 @@ const UploadTh = () => {
 
             try {
               const response = await axios.post(
-                'https://rts.pencom.gov.ng/submitth',
-                data,
+                'http://132.10.100.221:9912/crusader/webservices/api/th/submitth',
                 {
-                  headers: {
-                    userid: credentials?.userid,
-                    password: credentials?.password,
-                    token: credentials?.token,
-                    quarter: credentials?.quarter,
-                    transferRefId: transferRefId,
-                  },
+                  data: data,
+                  userid: credentials?.userid,
+                  password: credentials?.password,
+                  token: credentials?.token,
+                  quarter: credentials?.quarter,
+                  transferRefId: transferRefId,
+                  pin: pin,
                 },
               );
 
               setResponseResults((prevResults: any) => [
                 ...prevResults,
                 {
-                  PIN: pin,
-                  transferRefId: transferRefId,
-                  status: response.data,
+                  ...response.data,
                 },
               ]);
-            } catch (error) {
+            } catch (error: any) {
               console.log('Error fetching from API', error);
               setResponseResults((prevResults: any) => [
                 ...prevResults,
                 {
                   PIN: pin,
                   transferRefId: transferRefId,
-                  status: error,
+                  status: error?.message,
                 },
               ]);
             }
@@ -201,7 +200,7 @@ const UploadTh = () => {
                       onClick={handleOnSubmit}
                       className="inline-block shrink-0 rounded-md border border-graydark dark:border-white bg-graydark px-12 py-3 text-sm font-medium text-gray-2 hover:text-graydark dark:text-gray-400 transition hover:bg-transparent hover:text-gray-800 focus:outline-none focus:ring active:text-gray-800"
                     >
-                      Generate Mandate
+                      Start
                     </button>
 
                     <p className="mt-4 text-sm text-gray-500 sm:mt-0"></p>
@@ -213,10 +212,8 @@ const UploadTh = () => {
         </div>
       </section>
       <section>
-        {responseResults && (
-          <>
-            <p>{responseResults.status}</p>
-          </>
+        {responseResults.length > 0 && (
+          <ReportTh responseResults={responseResults} />
         )}
       </section>
     </>
