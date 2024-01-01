@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import * as XLSX from 'xlsx';
 import Breadcrumb from '../../../components/Breadcrumb';
 import { useLocation } from 'react-router-dom';
@@ -14,7 +13,6 @@ const UploadTh = () => {
   const [fileName, setFilename] = useState<string>('');
   const [results, setResults] = useState<any>([]);
   const [responseResults, setResponseResults] = useState<any>([]);
-  const navigate = useNavigate();
 
   const handleFileUpload = (event: any) => {
     const file = event.target.files[0];
@@ -57,6 +55,7 @@ const UploadTh = () => {
 
   const handleOnSubmit = async (e: any) => {
     e.preventDefault();
+    console.log(credentials);
 
     try {
       const response = await fetch(
