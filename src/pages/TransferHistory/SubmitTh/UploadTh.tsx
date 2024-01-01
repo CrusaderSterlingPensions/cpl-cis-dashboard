@@ -55,7 +55,6 @@ const UploadTh = () => {
 
   const handleOnSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(credentials);
 
     try {
       const response = await fetch(
@@ -71,7 +70,6 @@ const UploadTh = () => {
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log(responseData);
         setResults(responseData);
         try {
           for (const data of responseData) {
@@ -117,11 +115,7 @@ const UploadTh = () => {
     } catch (error) {
       console.error(error);
     }
-
-    // navigate(`/mandate/pinComponent`, { replace: true });
   };
-
-  console.log(responseResults);
 
   return (
     <>
