@@ -95,7 +95,8 @@ const Upload = () => {
           pauseOnHover: true,
           draggable: true,
         });
-        navigate(-1);
+        // navigate(-1);
+        console.log(result)
       }
     } catch (error: any) {
       if (error.status === 500) {
