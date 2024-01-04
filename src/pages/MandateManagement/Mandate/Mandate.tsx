@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setMandatePins } from '../../redux/mandateSlice';
+import { setMandatePins } from '../../../redux/mandateSlice';
 import * as XLSX from 'xlsx';
-import Breadcrumb from '../../components/Breadcrumb';
+import Breadcrumb from '../../../components/Breadcrumb';
 
 const Mandate = () => {
   const [pins, setPins] = useState([]);

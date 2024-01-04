@@ -6,7 +6,7 @@ import JSZip from 'jszip';
 import DownloadPDF from './DownloadPDF';
 import moment from 'moment/moment';
 import { useNavigate } from 'react-router-dom';
-import { mandateSelector } from '../../redux/mandateSlice';
+import { mandateSelector } from '../../../redux/mandateSlice';
 
 const PinComponent = () => {
   const [pdfs, setPdfs] = useState<any>([]);
