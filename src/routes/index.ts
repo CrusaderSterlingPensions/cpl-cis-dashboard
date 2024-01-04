@@ -1,4 +1,7 @@
 import { lazy } from 'react';
+const MandateStore = lazy(() => import('../pages/MandateManagement/MandateStore/MandateStore'));
+const UploadMandate = lazy(() => import('../pages/MandateManagement/MandateStore/UploadMandate'));
+const SearchMandate = lazy(() => import('../pages/MandateManagement/MandateStore/SearchMandate'));
 const UploadTh = lazy(
   () => import('../pages/TransferHistory/SubmitTh/UploadTh'),
 );
@@ -12,8 +15,8 @@ const Upload = lazy(() => import('../pages/Micropensions/Upload'));
 const PinUpload = lazy(() => import('../pages/Micropensions/PinUpload'));
 const UserProfilePage = lazy(() => import('../pages/UserProfilePage'));
 const MobileApp = lazy(() => import('../pages/Dashboard/MobileApp'));
-const Mandate = lazy(() => import('../pages/Mandate/Mandate'));
-const PinComponent = lazy(() => import('../pages/Mandate/PinComponent'));
+const Mandate = lazy(() => import('../pages/MandateManagement/Mandate/Mandate'));
+const PinComponent = lazy(() => import('../pages/MandateManagement/Mandate/PinComponent'));
 const Calendar = lazy(() => import('../pages/Calendar'));
 const Chart = lazy(() => import('../pages/Chart'));
 const FormElements = lazy(() => import('../pages/Form/FormElements'));
@@ -71,9 +74,24 @@ const coreRoutes = [
     component: Buttons,
   },
   {
-    path: '/mandate',
+    path: '/mandate/generate-mandate',
     title: 'Mandate',
     component: Mandate,
+  },
+  {
+    path: '/mandate/mandate-store',
+    title: 'MandateStore',
+    component: MandateStore,
+  },
+  {
+    path: '/mandate/upload-mandate',
+    title: 'UploadMandate',
+    component: UploadMandate
+  },
+  {
+    path: '/mandate/search-mandate',
+    title: 'SearchMandate',
+    component: SearchMandate
   },
   {
     path: '/mobile-app/:userId',
