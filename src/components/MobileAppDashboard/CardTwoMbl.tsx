@@ -18,17 +18,17 @@ const CardTwoMbl = () => {
     fetchData();
   }, []);
   return (
-    <div className="rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
-        <FaCamera className="text-primary dark:text-white" size={20} />
+    <div className="rounded-sm border border-stroke bg-white py-4 px-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
+        <FaCamera className="text-primary dark:text-white" size={14} />
       </div>
 
-      <div className="mt-4 flex items-end justify-between">
+      <div className="px-2 mt-4 flex items-end justify-between">
         <div>
           <h4 className="text-title-md font-bold text-black dark:text-white">
             {resultData?.todayCount}
           </h4>
-          <span className="text-sm font-medium">Daily Data Recapture</span>
+          <span className="text-xs font-medium">Daily Data Recapture</span>
         </div>
 
         <span
@@ -40,7 +40,7 @@ const CardTwoMbl = () => {
         >
           <span className="flex flex-col justify-end items-end">
             <p>{`${resultData?.percentageChange}%`}</p>
-            <p className=" text-xs font-bold">Yesterday</p>
+            {/* <p className=" text-xs font-bold">Yesterday</p> */}
           </span>
           {parseInt(resultData?.percentageChange) > 0 ? (
             <svg

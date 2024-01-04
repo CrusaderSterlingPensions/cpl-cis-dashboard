@@ -159,10 +159,10 @@ const ChartOneMbl: React.FC = () => {
               <span className="block h-2.5 w-full max-w-2.5 rounded-full bg-primary"></span>
             </span>
             <div className="w-full">
-              <p className="font-semibold text-primary">
+              <p className="font-semibold text-primary text-sm">
                 Total Logins: {totals.totalCount}
               </p>
-              <p className="text-sm font-medium">{totals.dateRange}</p>
+              <p className="text-xs font-medium">{totals.dateRange}</p>
             </div>
           </div>
         </div>
@@ -199,6 +199,7 @@ const ChartOneMbl: React.FC = () => {
             series={state.series}
             type="area"
             height={350}
+            
           />
         </div>
       </div>

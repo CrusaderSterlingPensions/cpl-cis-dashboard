@@ -1,20 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setMandatePins } from '../../redux/mandateSlice';
+import { useState } from 'react';
 import * as XLSX from 'xlsx';
-import Breadcrumb from '../../components/Breadcrumb';
+import Breadcrumb from '../../../components/Breadcrumb';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import ReportTh from './ReportTh';
 
-const Mandate = () => {
+const UploadTh = () => {
+  const location = useLocation();
+  const credentials = location.state?.credentials;
   const [pins, setPins] = useState([]);
   const [fileSelected, setFileSelected] = useState(false);
   const [fileName, setFilename] = useState<string>('');
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setMandatePins(pins));
-  }, [pins]);
+  const [results, setResults] = useState<any>([]);
+  const [responseResults, setResponseResults] = useState<any>([]);
 
   const handleFileUpload = (event: any) => {
     const file = event.target.files[0];
@@ -41,7 +39,6 @@ const Mandate = () => {
         }
       }
       setPins(newPins);
-      dispatch(setMandatePins(newPins));
       setFilename(file?.name);
       setFileSelected(true);
     };
@@ -50,20 +47,79 @@ const Mandate = () => {
   };
 
   const handleCancel = () => {
-    // Clear the selected file and show the input area again
     setFileSelected(false);
     setPins([]);
     setFilename('');
+    setResponseResults([]);
   };
 
-  const handleOnSubmit = (e: any) => {
+  const handleOnSubmit = async (e: any) => {
     e.preventDefault();
-    navigate(`/mandate/pinComponent`, { replace: true });
+
+    try {
+      const response = await fetch(
+        'http://132.10.100.221:9912/crusader/webservices/api/th/submit/get-data',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...credentials, pins }),
+        },
+      );
+
+      if (response.ok) {
+        const responseData = await response.json();
+        setResults(responseData);
+        try {
+          for (const data of responseData) {
+            const pin = data?.thSummary?.rsapin;
+            const transferRefId = data?.thSummary?.referenceId;
+
+            try {
+              const response = await axios.post(
+                'http://132.10.100.221:9912/crusader/webservices/api/th/submitth',
+                {
+                  data: data,
+                  userid: credentials?.userid,
+                  password: credentials?.password,
+                  token: credentials?.token,
+                  quarter: credentials?.quarter,
+                  transferRefId: transferRefId,
+                  pin: pin,
+                },
+              );
+
+              setResponseResults((prevResults: any) => [
+                ...prevResults,
+                {
+                  ...response.data,
+                },
+              ]);
+            } catch (error: any) {
+              console.log('Error fetching from API', error);
+              setResponseResults((prevResults: any) => [
+                ...prevResults,
+                {
+                  PIN: pin,
+                  transferRefId: transferRefId,
+                  status: error?.message,
+                },
+              ]);
+            }
+          }
+        } catch (error) {}
+      } else {
+        throw new Error('Request failed with status ' + response.status);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <>
-      <Breadcrumb pageName="Mandate" />
+      <Breadcrumb pageName="Submit Th" />
       <section>
         <div className="flex flex-col justify-center items-center bg-white dark:bg-black">
           <main
@@ -72,7 +128,7 @@ const Mandate = () => {
           >
             <div className="flex flex-col items-center justify-center max-w-xl lg:max-w-3xl">
               <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                Generate Mandate
+                Upload PINS
               </h1>
 
               <div className="col-span-6 sm:col-span-3">
@@ -88,7 +144,7 @@ const Mandate = () => {
                 ) : (
                   <>
                     <h4 className="block text-sm font-medium text-gray-700 mb-6">
-                      Upload Client Pins as Excel Document
+                      Upload Transfer Out Pins(Excel Only)
                     </h4>
                     {/* File Upload Start */}
                     <label
@@ -137,7 +193,7 @@ const Mandate = () => {
                       onClick={handleOnSubmit}
                       className="inline-block shrink-0 rounded-md border border-graydark dark:border-white bg-graydark px-12 py-3 text-sm font-medium text-gray-2 hover:text-graydark dark:text-gray-400 transition hover:bg-transparent hover:text-gray-800 focus:outline-none focus:ring active:text-gray-800"
                     >
-                      Generate Mandate
+                      Start
                     </button>
 
                     <p className="mt-4 text-sm text-gray-500 sm:mt-0"></p>
@@ -148,8 +204,13 @@ const Mandate = () => {
           </main>
         </div>
       </section>
+      <section>
+        {responseResults.length > 0 && (
+          <ReportTh responseResults={responseResults} />
+        )}
+      </section>
     </>
   );
 };
 
-export default Mandate;
+export default UploadTh;
